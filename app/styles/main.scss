@@ -1,130 +1,67 @@
+.info {
+    max-width: 700px;
+    margin: 0 auto;
+
+    h1 {
+        text-align: center;
+        font-size: 2.2em;
+    }
+    article {
+        font-size: 1.5em;
+    }
+}
+
+.footer {
+    max-width: 700px;
+    margin-top: 5em;
+    margin: 0 auto;
+}
+
 .stage {
     border: 0.2em solid #000000;
     display: inline-block;
 }
 
+button {
+    border: none;
+    margin-bottom: 2em;
+    cursor: pointer;
+    &.active {
+        background-color: #9ed3ff;
+    }
+}
+
 .tile {
     float: left;
-}
-
-.start {
-    background-color: #00A000;
-}
-
-.finish {
-    background-color: #cc0000;
-}
-
-.wall {
-    @extend .tile;
-    width: 2.5em;
-    height: 2.5em;
-    background-color: #8A6343;
-}
-
-.l {
-    @extend .tile;
-    width: 2.25em;
-    height: 2em;
-    border-top: 0.25em solid #8A6343;
-    border-bottom: 0.25em solid #8A6343;
-    border-right: 0.25em solid #8A6343;
-}
-.r {
-    @extend .tile;
-    width: 2.25em;
-    height: 2em;
-    border-top: 0.25em solid #8A6343;
-    border-bottom: 0.25em solid #8A6343;
-    border-left: 0.25em solid #8A6343;
-}
-.u {
-    @extend .tile;
     width: 2em;
-    height: 2.25em;
-    border-left: 0.25em solid #8A6343;
-    border-right: 0.25em solid #8A6343;
-    border-bottom: 0.25em solid #8A6343;
-}
-.d {
-    @extend .tile;
-    width: 2em;
-    height: 2.25em;
-    border-left: 0.25em solid #8A6343;
-    border-right: 0.25em solid #8A6343;
-    border-top: 0.25em solid #8A6343;
-}
-.lr {
-    @extend .tile;
-    width: 2.5em;
     height: 2em;
-    border-top: 0.25em solid #8A6343;
-    border-bottom: 0.25em solid #8A6343;
+    .start {
+        width: 1.9em;
+        height: 1.9em;
+        background-color: #3fff3d;
+        margin-left: 0.05em;
+        margin-top: 0.05em;
+        position: absolute;
+    }
+    .finish {
+        @extend .start;
+        background-color: #fffa0a;
+    }
+    .robot {
+        position: absolute;
+        width: 1.8em;
+        height: 1.8em;
+        background-color: #ff0000;
+        margin-left: 0.1em;
+        margin-top: 0.1em;
+        z-index: 2;
+    }
 }
-.ld {
-    @extend .tile;
-    height: 2.25em;
-    width: 2.25em;
-    border-top: 0.25em solid #8A6343;
-    border-right: 0.25em solid #8A6343;
+
+.tile--1 {
+    background-color: #000000;
 }
-.lu {
-    @extend .tile;
-    height: 2.25em;
-    width: 2.25em;
-    border-right: 0.25em solid #8A6343;
-    border-bottom: 0.25em solid #8A6343;
-}
-.ud {
-    @extend .tile;
-    height: 2.5em;
-    width: 2em;
-    border-left: 0.25em solid #8A6343;
-    border-right: 0.25em solid #8A6343;
-}
-.ur {
-    @extend .tile;
-    height: 2.25em;
-    width: 2.25em;
-    border-left: 0.25em solid #8A6343;
-    border-bottom: 0.25em solid #8A6343;
-}
-.rd {
-    @extend .tile;
-    height: 2.25em;
-    width: 2.25em;
-    border-left: 0.25em solid #8A6343;
-    border-top: 0.25em solid #8A6343;
-}
-.lur {
-    @extend .tile;
-    height: 2.25em;
-    width: 2.5em;
-    border-bottom: 0.25em solid #8A6343;
-}
-.ldr {
-    @extend .tile;
-    height: 2.25em;
-    width: 2.5em;
-    border-top: 0.25em solid #8A6343;
-}
-.lud {
-    @extend .tile;
-    height: 2.5em;
-    width: 2.25em;
-    border-right: 0.25em solid #8A6343;
-}
-.rud {
-    @extend .tile;
-    height: 2.5em;
-    width: 2.25em;
-    border-left: 0.25em solid #8A6343;
-}
-.lrud {
-    @extend .tile;
-    height: 2.5em;
-    width: 2.5em;
-}
+
 .end {
     clear: left;
 }

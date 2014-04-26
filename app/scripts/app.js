@@ -11,9 +11,13 @@ angular.module('RobotMirosAdventure', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
-      .when('/stage1', {
-        templateUrl: 'partials/stage1',
-        controller: 'Stage1Ctrl'
+      .when('/stage/:stage?', {
+        templateUrl: 'partials/stage',
+        controller: 'StageCtrl'
+      })
+      .when('/finish', {
+        templateUrl: 'partials/finish',
+        controller: 'FinishCtrl'
       })
       .otherwise({
         redirectTo: '/'

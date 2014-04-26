@@ -73,6 +73,7 @@ module.exports = function (grunt) {
       express: {
         files: [
           'server.js',
+          'game/*.{js,json}',
           'lib/**/*.{js,json}'
         ],
         tasks: ['newer:jshint:server', 'express:dev'],
@@ -93,7 +94,7 @@ module.exports = function (grunt) {
         options: {
           jshintrc: 'lib/.jshintrc'
         },
-        src: [ 'lib/{,*/}*.js']
+        src: [ 'game/*.js', 'lib/{,*/}*.js']
       },
       all: [
         '<%= yeoman.app %>/scripts/{,*/}*.js'
@@ -302,6 +303,7 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server.js',
+            'game/*',
             'lib/**/*'
           ]
         }]

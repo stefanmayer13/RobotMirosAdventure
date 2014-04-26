@@ -1,0 +1,18 @@
+<div class="controls">
+    <button ng-click="reset()">Start</button>
+    Speed:
+    <button ng-class="{active: isActive(1)}" ng-click="speed(1)">1x</button>
+    <button ng-class="{active: isActive(2)}" ng-click="speed(2)">2x</button>
+    <button ng-class="{active: isActive(5)}" ng-click="speed(5)">5x</button>
+</div>
+
+<div class="stage">
+    <div ng-repeat="row in level track by $index">
+        <div class="tile tile--{{col}}" ng-repeat="col in row track by $index">
+            <div ng-if="start[0] === $index && start[1] === $parent.$index" class="start"></div>
+            <div ng-if="finish[0] === $index && finish[1] === $parent.$index" class="finish"></div>
+            <div ng-if="robot.pos[0] === $index && robot.pos[1] === $parent.$index" class="robot"></div>
+        </div>
+        <div class="end"></div>
+    </div>
+</div>
