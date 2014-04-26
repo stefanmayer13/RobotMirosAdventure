@@ -6,6 +6,8 @@
     <button ng-class="{active: isActive(5)}" ng-click="speed(5)">5x</button>
 </div>
 
+<article>{{text}}</article>
+
 <div class="stage">
     <div ng-repeat="row in level track by $index">
         <div class="tile tile--{{col}}" ng-repeat="col in row track by $index">

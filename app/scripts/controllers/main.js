@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('RobotMirosAdventure')
-  .controller('MainCtrl', function () {
-
+  .controller('MainCtrl', function (Stage) {
+    Stage.reset();
   });

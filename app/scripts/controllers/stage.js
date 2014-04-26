@@ -21,6 +21,7 @@ angular.module('RobotMirosAdventure')
       $scope.level = data.level;
       $scope.start = data.start;
       $scope.finish = data.finish;
+      $scope.text = data.text;
     });
 
     var getRobotState = function () {

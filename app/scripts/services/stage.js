@@ -7,6 +7,9 @@ angular.module('RobotMirosAdventure')
     }, {
       get: {
         method: 'GET'
+      },
+      reset: {
+        method: 'DELETE'
       }
 	  });
   });

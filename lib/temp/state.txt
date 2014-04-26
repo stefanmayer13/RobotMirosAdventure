@@ -1,1 +1,1 @@
-{"robot":{"pos":[15,1],"dir":"right"},"stage":"0"}
+{"robot":{"pos":[0,1],"dir":"left"},"stage":0}
