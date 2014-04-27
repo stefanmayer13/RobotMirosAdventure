@@ -1,32 +1,64 @@
 'use strict';
 /*jshint unused:false */
 
+var mathSolver = require('./mathSolver');
+
 exports.create = function(extensions) {
   var robot = {},
     direction = 'left',
+    turn = 0,
     pos = [0,0];
 
-  robot.nextStep = function () {
-    console.log();
+  function turnLeft () {
+    switch (direction) {
+      case 'right':
+        direction = 'top';
+        break;
+      case 'left':
+        direction = 'bottom';
+        break;
+      case 'top':
+        direction = 'left';
+        break;
+      case 'bottom':
+        direction = 'right';
+        break;
+    }
+  }
+  function turnRight () {
+    switch (direction) {
+      case 'right':
+        direction = 'bottom';
+        break;
+      case 'left':
+        direction = 'top';
+        break;
+      case 'top':
+        direction = 'right';
+        break;
+      case 'bottom':
+        direction = 'left';
+        break;
+    }
+  }
 
+  robot.nextStep = function () {
     if (!extensions.sensors[direction]) {
-      console.log('Somethins wrong');
+      console.log('Somethings wrong');
       return;
     }
 
-    console.log(extensions.sensors[direction]());
-    if (extensions.sensors[direction]() === 'wall') {
-      if (direction !== 'left' && extensions.sensors.right() !== 'wall') {
-        direction = 'right';
-      } else if (direction !== 'bottom' && extensions.sensors.top() !== 'wall') {
-        direction = 'top';
-      } else if (direction !== 'top' && extensions.sensors.bottom() !== 'wall') {
-        direction = 'bottom';
-      } else if (direction !== 'left') {
-        direction = 'left';
-      } else {
-        direction = 'right';
+    if (extensions.sensors[direction]() === 'empty') {
+      turnLeft();
+      if (extensions.sensors[direction]() === 'wall') {
+        turnRight();
       }
+    }
+
+    var count = 0;
+    while (extensions.sensors[direction]() === 'wall' || count === 2) {
+      turnLeft();
+      count++;
     }
 
     console.log('Direction', direction);
@@ -44,6 +76,13 @@ exports.create = function(extensions) {
       case 'bottom':
         pos[1] += 1;
         break;
+    }
+  };
+
+  robot.solve = function (type, tasks) {
+    switch (type) {
+      case 'math':
+        return mathSolver.solve(tasks);
     }
   };
 
