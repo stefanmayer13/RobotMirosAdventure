@@ -7,7 +7,7 @@
         <li ng-repeat="task in task.tasks track by $index">{{$parent.task.solutions[$index].status | checkmark}} {{task}} = {{$parent.task.solutions[$index].solution}}</li>
     </ul>
 
-    <div ng-if="task.solved">
+    <div ng-if="task.solved && task.nr !== 3">
         <a ng-href="stage"><h1>CONTINUE</h1></a>
     </div>
 </div>
