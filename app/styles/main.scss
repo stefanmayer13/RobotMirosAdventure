@@ -56,6 +56,10 @@ button {
         margin-top: 0.1em;
         z-index: 2;
     }
+    .marked {
+        @extend .start;
+        background-color: #00fffc;
+    }
 }
 
 .tile--1 {

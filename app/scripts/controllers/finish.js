@@ -2,14 +2,13 @@
 
 angular.module('RobotMirosAdventure')
   .controller('FinishCtrl', function ($scope, Stage, Task) {
-    var texts = ['',
+    var texts = [
       'Now it gets a little trickier!',
-      'Miro needs to lern basic math to continue. Implement the solve function of Miro.'
+      'Miro needs to lern basic math to continue. Implement the solve function of Miro.',
+      'I hope you know the Tower of Hanoi. Calculate the number of needed steps with the specified disks.'
     ];
-    Stage.get(function (data) {
-      $scope.text = texts[data.nr];
-    });
     Task.get(function (data) {
+      $scope.text = texts[data.nr];
       $scope.task = data;
     });
   });

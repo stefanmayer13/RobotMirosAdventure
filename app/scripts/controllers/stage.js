@@ -4,8 +4,6 @@ angular.module('RobotMirosAdventure')
   .controller('StageCtrl', function ($scope, $rootScope, $location, Stage, Robot) {
     var timeout;
 
-    $scope.robot = Robot.init();
-
     $rootScope.speed = parseInt(sessionStorage.getItem('speed'), 10) || 1;
 
     $scope.speed = function (speed) {
@@ -18,6 +16,7 @@ angular.module('RobotMirosAdventure')
     };
 
     Stage.get(function (data) {
+      $scope.robot = Robot.init();
       $scope.level = data.level;
       $scope.start = data.start;
       $scope.finish = data.finish;
@@ -26,9 +25,9 @@ angular.module('RobotMirosAdventure')
 
     var getRobotState = function () {
       timeout = window.setTimeout(function () {
-        Robot.get(function (pos) {
-          $scope.robot = pos;
-          if ($scope.finish[0] !== pos.pos[0] || $scope.finish[1] !== pos.pos[1]) {
+        Robot.get(function (robot) {
+          $scope.robot = robot;
+          if ($scope.finish[0] !== robot.pos[0] || $scope.finish[1] !== robot.pos[1]) {
             getRobotState();
           } else {
             window.setTimeout(function () {

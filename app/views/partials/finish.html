@@ -4,8 +4,10 @@
     <article>{{text}}</article>
 
     <ul>
-        <li ng-repeat="task in task.tasks">{{$parent.task.solutions[$index].status | checkmark}} {{task}}={{$parent.task.solutions[$index].solution}}</li>
+        <li ng-repeat="task in task.tasks track by $index">{{$parent.task.solutions[$index].status | checkmark}} {{task}} = {{$parent.task.solutions[$index].solution}}</li>
     </ul>
 
-    <a ng-href="stage"><h1>CONTINUE</h1></a>
+    <div ng-if="task.solved">
+        <a ng-href="stage"><h1>CONTINUE</h1></a>
+    </div>
 </div>

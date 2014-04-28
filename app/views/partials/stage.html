@@ -14,6 +14,7 @@
             <div ng-if="start[0] === $index && start[1] === $parent.$index" class="start"></div>
             <div ng-if="finish[0] === $index && finish[1] === $parent.$index" class="finish"></div>
             <div ng-if="robot.pos[0] === $index && robot.pos[1] === $parent.$index" class="robot"></div>
+            <div ng-if="robot.markers[$index] && robot.markers[$index][$parent.$index]" class="marked"></div>
         </div>
         <div class="end"></div>
     </div>

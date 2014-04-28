@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         options: {
           jshintrc: 'lib/.jshintrc'
         },
-        src: [ 'game/*.js', 'lib/{,*/}*.js']
+        src: [ 'game/*.js'] //, 'lib/{,*/}*.js'
       },
       all: [
         '<%= yeoman.app %>/scripts/{,*/}*.js'

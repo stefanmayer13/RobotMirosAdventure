@@ -231,5 +231,28 @@ describe('Solution', function() {
         assert.deepEqual([0, 1], this.robot.getPos());
       });
     });
+
+    describe('Should mark visited intersections', function() {
+      beforeEach(function () {
+        this.extension.sensors.top.returns('empty');
+        this.extension.sensors.right.returns('empty');
+        this.extension.sensors.bottom.returns('empty');
+        this.extension.sensors.left.returns('empty');
+      });
+      it('intersection from bottom left, right', function() {
+        this.extension.sensors.top.returns('wall');
+
+        this.robot.nextStep();
+
+        assert.equal(true, this.extension.marker.markTile.calledOnce);
+      });
+      it('intersection from bottom top, right', function() {
+        this.extension.sensors.left.returns('wall');
+
+        this.robot.nextStep();
+
+        assert.equal(true, this.extension.marker.markTile.calledOnce);
+      });
+    });
   });
 });

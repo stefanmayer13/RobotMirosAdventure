@@ -1,7 +1,8 @@
 'use strict';
 /*jshint unused:false */
 
-var mathSolver = require('./mathSolver');
+var mathSolver = require('./mathSolver'),
+  solveHanoi = require('./hanoiSolver');
 
 exports.create = function(extensions) {
   var robot = {},
@@ -12,33 +13,37 @@ exports.create = function(extensions) {
   function turnLeft () {
     switch (direction) {
       case 'right':
-        direction = 'top';
-        break;
+        return 'top';
       case 'left':
-        direction = 'bottom';
-        break;
+        return 'bottom';
       case 'top':
-        direction = 'left';
-        break;
+        return 'left';
       case 'bottom':
-        direction = 'right';
-        break;
+        return 'right';
     }
   }
   function turnRight () {
     switch (direction) {
       case 'right':
-        direction = 'bottom';
-        break;
+        return 'bottom';
       case 'left':
-        direction = 'top';
-        break;
+        return 'top';
       case 'top':
-        direction = 'right';
-        break;
+        return 'right';
       case 'bottom':
-        direction = 'left';
-        break;
+        return 'left';
+    }
+  }
+
+  function markIntersection () {
+    if (extensions.sensors[direction]() === 'empty') {
+      if (extensions.sensors[turnLeft()]() === 'empty' || extensions.sensors[turnRight()]() === 'empty') {
+        extensions.marker.markTile();
+      }
+    } else {
+      if (extensions.sensors[turnLeft()]() === 'empty' && extensions.sensors[turnRight()]() === 'empty') {
+        extensions.marker.markTile();
+      }
     }
   }
 
@@ -48,16 +53,20 @@ exports.create = function(extensions) {
       return;
     }
 
-    if (extensions.sensors[direction]() === 'empty') {
-      turnLeft();
-      if (extensions.sensors[direction]() === 'wall') {
-        turnRight();
+    if (extensions.sensors[direction]() === 'empty' && (!extensions.marker || !extensions.marker.isTileMarked())) {
+      var dir = turnLeft();
+      if (extensions.sensors[dir]() === 'empty') {
+        direction = dir;
       }
+    }
+
+    if (extensions.marker) {
+      markIntersection();
     }
 
     var count = 0;
     while (extensions.sensors[direction]() === 'wall' || count === 2) {
-      turnLeft();
+      direction = turnLeft();
       count++;
     }
 
@@ -83,6 +92,8 @@ exports.create = function(extensions) {
     switch (type) {
       case 'math':
         return mathSolver.solve(tasks);
+      case 'hanoi':
+        return solveHanoi.solve(tasks);
     }
   };
 
