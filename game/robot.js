@@ -53,6 +53,10 @@ exports.create = function(extensions) {
       return;
     }
 
+    if (extensions.sensors[direction]() === 'marked') {
+      console.log('marked ahead');
+    }
+
     if (extensions.sensors[direction]() === 'empty' && (!extensions.marker || !extensions.marker.isTileMarked())) {
       var dir = turnLeft();
       if (extensions.sensors[dir]() === 'empty') {
@@ -60,14 +64,14 @@ exports.create = function(extensions) {
       }
     }
 
-    if (extensions.marker) {
-      markIntersection();
-    }
-
     var count = 0;
     while (extensions.sensors[direction]() === 'wall' || count === 2) {
       direction = turnLeft();
       count++;
+    }
+
+    if (extensions.marker) {
+      markIntersection();
     }
 
     console.log('Direction', direction);

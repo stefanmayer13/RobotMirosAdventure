@@ -14,7 +14,8 @@ describe('Robot', function() {
         left: sinon.stub()
       },
       marker: {
-        markTile: sinon.stub()
+        markTile: sinon.stub(),
+        isTileMarked: sinon.stub()
       }
     };
     this.robot = robotE.create(this.extension);
@@ -51,7 +52,8 @@ describe('Solution', function() {
         left: sinon.stub()
       },
       marker: {
-        markTile: sinon.stub()
+        markTile: sinon.stub(),
+        isTileMarked: sinon.stub()
       }
     };
     this.robot = robotE.create(this.extension);
